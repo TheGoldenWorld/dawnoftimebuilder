@@ -475,5 +475,8 @@
     "tooltip.dawnoftimebuilder.silk_worm_hatchery": "These eggs will hatch when placed on a tray.",
     "tooltip.dawnoftimebuilder.silk_worms": "After eating so many Mulberry Leaves on the tray, these worms are ready to weave their cocoon into a stick bundle.",
     "tooltip.dawnoftimebuilder.silk_cocoons": "The silk worms created delicate cocoons in the stick bundle. They can be combine to create silk.",
-    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "Place a block with your cursor on the left or the right side to change the direction of the pattern."
+    "tooltip.dawnoftimebuilder.moraq_mosaic_column": "Place a block with your cursor on the left or the right side to change the direction of the pattern.",
+    "tooltip.dawnoftimebuilder.persian_carpet_red": "§7Se connecte avec lui-meme et le tapis persan delicat rouge. Peut etre place sur les murs.",
+    "tooltip.dawnoftimebuilder.persian_carpet_delicate_red": "§7Se connecte avec lui-meme et le tapis persan rouge. Peut etre place sur les murs.",
+    "tooltip.dawnoftimebuilder.paper_wall_flowery": "§7Se connecte verticalement avec lui-meme."
 }

@@ -1,5 +1,6 @@
 package org.dawnoftime.dawnoftime;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -10,11 +11,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.dawnoftime.dawnoftime.client.gui.StoneOvenScreen;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBColorsRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBEntitiesRegistry;
+import org.dawnoftime.dawnoftime.registry.DoTBMenusRegistry;
 
 import java.util.function.Supplier;
 
@@ -38,6 +41,8 @@ public class DoTBForgeClient {
         eventBus.addListener(DoTBForgeClient::setupBlockColors);
         eventBus.addListener(DoTBForgeClient::setupItemColors);
         eventBus.addListener(DoTBForgeClient::registerRenderers);
+
+        event.enqueueWork(() -> MenuScreens.register(DoTBMenusRegistry.INSTANCE.STONE_OVEN.get(), StoneOvenScreen::new));
     }
 
     @SubscribeEvent

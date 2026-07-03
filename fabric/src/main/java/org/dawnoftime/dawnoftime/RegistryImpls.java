@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -17,6 +18,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +32,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.dawnoftime.dawnoftime.block.IFlammable;
+import org.dawnoftime.dawnoftime.client.gui.StoneOvenScreen;
 import org.dawnoftime.dawnoftime.client.gui.creative.CreativeInventoryCategories;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
@@ -42,6 +47,14 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class RegistryImpls {
+    public static class FabricMenusRegistry extends DoTBMenusRegistry {
+        @Override
+        public <T extends AbstractContainerMenu> Supplier<MenuType<T>> register(String name, java.util.function.BiFunction<Integer, net.minecraft.world.entity.player.Inventory, T> factory) {
+            MenuType<T> menuType = Registry.register(BuiltInRegistries.MENU, new ResourceLocation(DoTBCommon.MOD_ID, name), new MenuType<>(factory::apply, FeatureFlags.DEFAULT_FLAGS));
+            return () -> menuType;
+        }
+    }
+
     public static class FabricBlockEntitiesRegistry extends DoTBBlockEntitiesRegistry {
         @Override
         public <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String name, BiFunction<BlockPos, BlockState, T> factoryIn, Supplier<Block[]> validBlocksSupplier) {
@@ -144,6 +157,7 @@ public class RegistryImpls {
     public static void initClient() {
         EntityRendererRegistry.register(DoTBEntitiesRegistry.INSTANCE.CHAIR_ENTITY.get(), ChairRenderer::new);
         BlockEntityRenderers.register(DoTBBlockEntitiesRegistry.INSTANCE.DISPLAYER.get(), DisplayerBERenderer::new);
+        MenuScreens.register(DoTBMenusRegistry.INSTANCE.STONE_OVEN.get(), StoneOvenScreen::new);
 
         DoTBColorsRegistry.initialize();
         DoTBColorsRegistry.getBlocksColorRegistry().forEach((blockColor, blocks) -> {
@@ -159,6 +173,7 @@ public class RegistryImpls {
         DoTBBlocksRegistry.INSTANCE = new FabricBlocksRegistry();
         FabricItemsRegistry.INSTANCE = new FabricItemsRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new FabricBlockEntitiesRegistry();
+        DoTBMenusRegistry.INSTANCE = new FabricMenusRegistry();
         DoTBRecipeSerializersRegistry.INSTANCE = new FabricRecipeSerializersRegistry();
         DoTBRecipeTypesRegistry.INSTANCE = new FabricRecipeTypesRegistry();
         DoTBTags.INSTANCE = new FabricTagsRegistry();

@@ -2,7 +2,10 @@ package org.dawnoftime.dawnoftime.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -13,12 +16,29 @@ import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class PaneBlockDoT extends IronBarsBlock {
-    public PaneBlockDoT(Properties properties) {
+    private final String[] tooltipKeys;
+
+    public PaneBlockDoT(Properties properties, String... tooltipKeys) {
         super(properties);
+        this.tooltipKeys = tooltipKeys != null ? tooltipKeys : new String[0];
+    }
+
+    public PaneBlockDoT(Properties properties) {
+        this(properties, (String[]) null);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        super.appendHoverText(stack, world, tooltip, flag);
+        for (String key : tooltipKeys) {
+            tooltip.add(Component.translatable(key));
+        }
     }
 
     @Override

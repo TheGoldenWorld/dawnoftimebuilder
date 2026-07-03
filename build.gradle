@@ -28,13 +28,6 @@ configure([project(":fabric"), project(":forge")]) {
             changelogType = "markdown"
 
             requires("fusion-connected-textures")
-
-            /* shared dependencies found on curseforge
-            requires("slug")
-            optional("slug")
-            incompatible("slug")
-            embeds("slug")
-             */
         }
 
         modrinth {
@@ -43,20 +36,6 @@ configure([project(":fabric"), project(":forge")]) {
             minecraftVersions.add(project.property("minecraft_version"))
 
             requires("fusion-connected-textures")
-
-            /* shared dependencies found on modrinth
-            requires { // specify either id or slug, but not both at once
-                id = ""
-                slug = ""
-
-                version = "" // optional
-            } // or `requires("slug")` if you only need/want to specify the slug
-
-            // all of these have the same format as above
-            optional { }
-            incompatible { }
-            embeds { }
-            */
         }
     }
 }

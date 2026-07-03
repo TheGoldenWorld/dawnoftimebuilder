@@ -15,6 +15,7 @@ import org.dawnoftime.dawnoftime.block.french.*;
 import org.dawnoftime.dawnoftime.block.general.*;
 import org.dawnoftime.dawnoftime.block.german.*;
 import org.dawnoftime.dawnoftime.block.japanese.*;
+import org.dawnoftime.dawnoftime.block.chinese.StoneOvenBlock;
 import org.dawnoftime.dawnoftime.block.templates.LanternBlock;
 import org.dawnoftime.dawnoftime.block.persian.MoraqMosaicColumnBlock;
 import org.dawnoftime.dawnoftime.block.precolumbian.*;
@@ -134,6 +135,8 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> SPRUCE_WALL = register("spruce_wall", () -> new WallBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_SUPPORT_BEAM = register("spruce_support_beam", () -> new SupportBeamBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_SUPPORT_SLAB = register("spruce_support_slab", () -> new SupportSlabBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> SPRUCE_TIMBER_FRAME = register("spruce_timber_frame", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.WOOD).strength(2.0F, 6.0F), "tooltip.dawnoftimebuilder.connected_texture_label", "tooltip.dawnoftimebuilder.connected_texture").setBurnable(), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> SPRUCE_TIMBER_FRAME_PILLAR = register("spruce_timber_frame_pillar", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.WOOD).strength(2.0F, 6.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> THATCH_WHEAT = register("thatch_wheat", () -> new BlockDoT(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
     public final Supplier<Block> THATCH_WHEAT_EDGE = register("thatch_wheat_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
     public final Supplier<Block> THATCH_WHEAT_PLATE = register("thatch_wheat_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0F).sound(SoundType.GRASS)).setBurnable(80, 30), BlockTags.MINEABLE_WITH_HOE);
@@ -287,7 +290,11 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> CHARRED_SPRUCE_TRAPDOOR = register("charred_spruce_trapdoor", () -> new CustomTrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), BlockSetType.SPRUCE), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_SHUTTERS = register("charred_spruce_shutters", () -> new CharredSpruceShuttersBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), CHARRED_SPRUCE_SHUTTERS_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_TALL_SHUTTERS = register("charred_spruce_tall_shutters", () -> new CharredSpruceTallShuttersBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion()), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> CHARRED_SPRUCE_BOARDS = register("charred_spruce_boards", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> CHARRED_SPRUCE_BOARDS = register("charred_spruce_boards", () -> new RotatedPillarBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> CHARRED_SPRUCE_BOARDS_PLATE = register("charred_spruce_boards_plate", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> CHARRED_SPRUCE_BOARDS_SLAB = register("charred_spruce_boards_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> CHARRED_SPRUCE_BOARDS_EDGE = register("charred_spruce_boards_edge", () -> new EdgeBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+    public Supplier<Block> CHARRED_SPRUCE_BOARDS_STAIRS;
     public final Supplier<Block> CHARRED_SPRUCE_FOUNDATION = register("charred_spruce_foundation", () -> new BlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_FOUNDATION_SLAB = register("charred_spruce_foundation_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> CHARRED_SPRUCE_WALL = register("charred_spruce_wall", () -> new WallBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)), BlockTags.MINEABLE_WITH_AXE);
@@ -352,11 +359,13 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> PAPER_WALL_FLAT = register("paper_wall_flat", () -> new FlatPaperWallBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> PAPER_WALL_WINDOWS = register("paper_wall_window", () -> new PillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> PAPER_WALL_SQUARED = register("paper_wall_squared", () -> new PillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_WALL_FLOWERY = register("paper_wall_flowery", () -> new PillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> PAPER_WALL_GRID = register("paper_wall_grid", () -> new PillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
+    public final Supplier<Block> PAPER_WALL_FLOWERY = register("paper_wall_flowery", () -> new VerticalPillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F), "tooltip.dawnoftimebuilder.paper_wall_flowery"), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> PAPER_FOLDING_SCREEN = register("paper_folding_screen", () -> new FoldingScreenBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion(), FULL_SHAPE), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> RED_PAPER_LANTERN = register("red_paper_lantern", () -> new PaperLanternBlock(Block.Properties.copy(Blocks.RED_WOOL).noOcclusion().noCollission().lightLevel(state -> 12)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> PAPER_LAMP = register("paper_lamp", () -> new PaperLampBlock(Block.Properties.copy(Blocks.WHITE_WOOL).noOcclusion().lightLevel(state -> 14)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> STONE_LANTERN = register("stone_lantern", () -> new LanternBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(state -> 15), STONE_LANTERN_SHAPES));
+    public final Supplier<Block> STONE_OVEN = register("stone_oven", () -> new StoneOvenBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 13 : 0)), BlockTags.MINEABLE_WITH_PICKAXE);
     public final Supplier<Block> SMALL_TATAMI_MAT = register("small_tatami_mat", () -> new SmallTatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SMALL_TATAMI_FLOOR = registerWithItem("small_tatami_floor", () -> new SmallTatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null, BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> TATAMI_MAT = register("tatami_mat", () -> new TatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), BlockTags.MINEABLE_WITH_AXE);
@@ -371,8 +380,19 @@ public abstract class DoTBBlocksRegistry {
 
     // Persian
     public final Supplier<Block> SAND_SLAB = register("sand_slab", () -> new SlabBlockDoT(Block.Properties.copy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.2F).sound(SoundType.SAND)), BlockTags.MINEABLE_WITH_SHOVEL);
-    public final Supplier<Block> PERSIAN_CARPET_RED = register("persian_carpet_red", () -> new BlockDoT(Block.Properties.copy(Blocks.RED_WOOL), CARPET_SHAPES, "tooltip.dawnoftimebuilder.cross_connected_label", "tooltip.dawnoftimebuilder.persian_carpet_red"), BlockTags.SWORD_EFFICIENT);
-    public final Supplier<Block> PERSIAN_CARPET_DELICATE_RED = register("persian_carpet_delicate_red", () -> new BlockDoT(Block.Properties.copy(Blocks.RED_WOOL), CARPET_SHAPES, "tooltip.dawnoftimebuilder.cross_connected_label", "tooltip.dawnoftimebuilder.persian_carpet_delicate_red"), BlockTags.SWORD_EFFICIENT);
+    public final Supplier<Block> PERSIAN_CARPET_RED = register("persian_carpet_red",
+        () -> new WallOrFloorBlockDoT(Block.Properties.copy(Blocks.RED_WOOL),
+            WALL_OR_FLOOR_CARPET_SHAPES,
+            "tooltip.dawnoftimebuilder.cross_connected_label",
+            "tooltip.dawnoftimebuilder.persian_carpet_red"),
+        BlockTags.SWORD_EFFICIENT);
+
+    public final Supplier<Block> PERSIAN_CARPET_DELICATE_RED = register("persian_carpet_delicate_red",
+        () -> new WallOrFloorBlockDoT(Block.Properties.copy(Blocks.RED_WOOL),
+            WALL_OR_FLOOR_CARPET_SHAPES,
+            "tooltip.dawnoftimebuilder.cross_connected_label",
+            "tooltip.dawnoftimebuilder.persian_carpet_delicate_red"),
+        BlockTags.SWORD_EFFICIENT);
     public Supplier<Block> MORAQ_MOSAIC_RECESS;
     public final Supplier<Block> MORAQ_MOSAIC_RELIEF = register("moraq_mosaic_relief", () -> new ConnectedVerticalSidedPlanBlock(Block.Properties.copy(Blocks.BRICKS), RELIEF_SHAPES));
     public final Supplier<Block> MORAQ_MOSAIC_TRADITIONAL = register("moraq_mosaic_traditional", () -> new BlockDoT(Block.Properties.copy(Blocks.BRICKS)));
@@ -666,6 +686,7 @@ public abstract class DoTBBlocksRegistry {
         SCULPTED_WAXED_OAK_STAIRS = register("sculpted_waxed_oak_stairs", () -> new StairsBlockDoT(this.SCULPTED_WAXED_OAK, Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
         CHARRED_SPRUCE_PLANKS_STAIRS = register("charred_spruce_planks_stairs", () -> new StairsBlockDoT(this.CHARRED_SPRUCE_PLANKS, Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
         SPRUCE_BOARDS_STAIRS = register("spruce_boards_stairs", () -> new StairsBlockDoT(this.SPRUCE_BOARDS, Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
+        CHARRED_SPRUCE_BOARDS_STAIRS = register("charred_spruce_boards_stairs", () -> new StairsBlockDoT(this.CHARRED_SPRUCE_BOARDS, Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F)).setBurnable(2, 3), BlockTags.MINEABLE_WITH_AXE);
         GRAY_ROOF_TILES_STAIRS = register("gray_roof_tiles_stairs", () -> new StairsBlockDoT(this.GRAY_ROOF_TILES, Block.Properties.copy(Blocks.STONE_BRICKS)));
         CHARRED_SPRUCE_ROOF_SUPPORT = registerWithItem("charred_spruce_roof_support", () -> new MixedRoofSupportBlock(this.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem, BlockTags.MINEABLE_WITH_AXE);
         SPRUCE_ROOF_SUPPORT = registerWithItem("spruce_roof_support", () -> new MixedRoofSupportBlock(this.GRAY_ROOF_TILES_SLAB, Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), MixedRoofSupportBlock::getBlockItem, BlockTags.MINEABLE_WITH_AXE);
